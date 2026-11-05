@@ -15,6 +15,8 @@
         <box size="${chassis_length} ${chassis_width} ${chassis_height}" />
       </geometry>
 
+      <material name="nova_blue" />
+
     </visual>
 
     <collision>
@@ -48,6 +50,8 @@
           <sphere radius="${caster_radius}" />
 
         </geometry>
+
+        <material name="nova_light_grey" />
 
       </visual>
 

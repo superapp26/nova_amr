@@ -16,6 +16,8 @@
 
         </geometry>
 
+        <material name="nova_dark_grey" />
+
       </visual>
 
       <collision>
