@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Root frame. It is on the ground. It is empty -->
+
+  <link name="base_footprint" />
+
+  <link name="base_link">
+
+    <visual>
+
+      <origin xyz="0 0 ${chassis_z_offset}" rpy="0 0 0" />
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}" />
+      </geometry>
+
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${chassis_z_offset}" rpy="0 0 0" />
+
+      <geometry>
+        <box size="${chassis_length} ${chassis_width} ${chassis_height}" />
+      </geometry>
+
+    </collision>
+
+    <xacro:box_inertia mass="${chassis_mass}" x="${chassis_length}" y="${chassis_width}"
+                       z="${chassis_height}" xyz="0 0 ${chassis_z_offset}"  />
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+
+  </joint>
+
+  <xacro:macro name="caster" params="name_prefix x">
+
+    <link name="${name_prefix}_caster_link">
+
+      <visual>
+
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <sphere radius="${caster_radius}" />
+
+        </geometry>
+
+      </visual>
+
+      <collision>
+
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+
+          <sphere radius="${caster_radius}" />
+
+        </geometry>
+
+      </collision>
+
+      <xacro:sphere_inertia mass="${caster_mass}" r="${caster_radius}" />
+
+    </link>
+
+    <joint name="${name_prefix}_caster_joint" type="fixed">
+
+      <parent link="base_link" />
+      <child link="${name_prefix}_caster_link" />
+
+      <origin xyz="${x} 0 ${caster_radius - wheel_radius}" rpy="0 0 0" />
+    </joint>
+  </xacro:macro>
+
+
+  <xacro:caster name_prefix="front" x="${caster_x}" />
+
+  <xacro:caster name_prefix="rear" x="${-caster_x}" />
+</robot>
+
