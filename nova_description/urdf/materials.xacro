@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<robot>
+  <material name="nova_blue">
+
+    <color rgba="0.10 0.35 0.70 1.0" />
+
+  </material>
+
+  <material name="nova_dark_grey">
+
+    <color rgba="0.15 0.15 0.15 1.0" />
+
+  </material>
+
+  <material name="nova_light_grey">
+
+    <color rgba="0.7 0.7 0.7 1.0" />
+
+  </material>
+
+</robot>
